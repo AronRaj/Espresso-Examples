@@ -30,3 +30,6 @@ proguard/
 TestProject.iml
 gradlew
 gradlew.bat
+Espresso-Examples.iml
+.idea
+*.iml
