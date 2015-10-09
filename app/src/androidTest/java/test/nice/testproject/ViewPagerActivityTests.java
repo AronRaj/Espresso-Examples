@@ -1,7 +1,11 @@
 package test.nice.testproject;
 
-import android.test.ActivityInstrumentationTestCase2;
-import android.test.suitebuilder.annotation.SmallTest;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import test.nice.testproject.activities.ViewPagerActivity;
 
@@ -14,29 +18,17 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
-public class ViewPagerTests extends ActivityInstrumentationTestCase2<ViewPagerActivity> {
-    private static String TAG = ViewPagerTests.class.getSimpleName();
+@RunWith (AndroidJUnit4.class)
+public class ViewPagerActivityTests {
 
-    public ViewPagerTests() {
-        super(ViewPagerActivity.class);
-    }
+	/** Launches {@link ViewPagerActivity} for every test */
+	@Rule
+	public ActivityTestRule<ViewPagerActivity> activityRule = new ActivityTestRule<>(ViewPagerActivity.class);
 
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
-        getActivity();
-    }
-
-    @Override
-    public void tearDown() throws Exception {
-        super.tearDown();
-
-    }
-
-    /**
+	/**
      * Swipe between the first and second pages in the ViewPager.
      */
-    @SmallTest
+    @Test
     public void testSwipeBetweenFirstAndSecondPage() {
         onView(withText("Test One")).check(matches(isDisplayed()));
         onView(withId(R.id.pager)).perform(swipeLeft());
@@ -46,7 +38,7 @@ public class ViewPagerTests extends ActivityInstrumentationTestCase2<ViewPagerAc
     /**
      * Swipe between the first and second pages and back to the first in the ViewPager.
      */
-    @SmallTest
+    @Test
     public void testSwipeBetweenFirstSecondAndBackToFirstPage() {
         onView(allOf(withId(R.id.example_text), withText("Test One"))).check(matches(isDisplayed()));
         onView(withId(R.id.pager)).perform(swipeLeft());
@@ -58,7 +50,7 @@ public class ViewPagerTests extends ActivityInstrumentationTestCase2<ViewPagerAc
     /**
      * Swipe to the end of a Fragment
      */
-    @SmallTest
+    @Test
     public void testSwipeToTheEnd() {
         onView(withText("Test One")).check(matches(isDisplayed()));
         onView(withId(R.id.pager)).perform(swipeLeft()).perform(swipeLeft()).perform(swipeLeft());
@@ -68,7 +60,7 @@ public class ViewPagerTests extends ActivityInstrumentationTestCase2<ViewPagerAc
     /**
      * Swipe to the end of a Fragment and attempt to swipe further
      */
-    @SmallTest
+    @Test
     public void testSwipeBeyondTheEnd() {
         onView(withText("Test One")).check(matches(isDisplayed()));
         onView(withId(R.id.pager)).perform(swipeLeft()).perform(swipeLeft()).perform(swipeLeft()).perform(swipeLeft());

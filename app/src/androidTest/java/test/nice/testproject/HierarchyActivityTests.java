@@ -1,11 +1,15 @@
 package test.nice.testproject;
 
-import android.test.ActivityInstrumentationTestCase2;
-import android.test.suitebuilder.annotation.SmallTest;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import test.nice.testproject.activities.HierarchyActivity;
 
@@ -27,40 +31,26 @@ import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
-public class HierarchyActivityTests extends ActivityInstrumentationTestCase2<HierarchyActivity> {
-    private static String TAG = HierarchyActivityTests.class.getSimpleName();
 
-    private HierarchyActivity mActivity;
+@RunWith (AndroidJUnit4.class)
+public class HierarchyActivityTests {
 
-    public HierarchyActivityTests() {
-        super(HierarchyActivity.class);
-    }
-
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
-        mActivity = getActivity();
-    }
-
-    @Override
-    public void tearDown() throws Exception {
-        super.tearDown();
-
-    }
-
-
+	/** Launches {@link HierarchyActivity} for every test */
+	@Rule
+	public ActivityTestRule<HierarchyActivity> activityRule = new ActivityTestRule<>(HierarchyActivity.class);
+	
     /**
      * Test the descendants of a selected view.
      */
-    @SmallTest
+    @Test
     public void testSelectedDescendants() {
-        selectedDescendantsMatch(isAssignableFrom(TextView.class), withText(getInstrumentation().getTargetContext().getResources().getString(R.string.hierarchy_text))).check(createATestView(), null);
+        selectedDescendantsMatch(isAssignableFrom(TextView.class), withText(activityRule.getActivity().getString(R.string.hierarchy_text))).check(createATestView(), null);
     }
 
     /**
      * Test that there are no ellipsized texts.
      */
-    @SmallTest
+    @Test
     public void testNoEllipsizedText() {
        onView(withId(R.id.hierarchy_parent)).check(noEllipsizedText());
     }
@@ -68,7 +58,7 @@ public class HierarchyActivityTests extends ActivityInstrumentationTestCase2<Hie
     /**
      * Test that there are no multiline buttons.
      */
-    @SmallTest
+    @Test
     public void testNoMultilineButtons() {
         onView(withId(R.id.hierarchy_parent)).check(noMultilineButtons());
     }
@@ -76,7 +66,7 @@ public class HierarchyActivityTests extends ActivityInstrumentationTestCase2<Hie
     /**
      * Test the descendants of a selected view.
      */
-    @SmallTest
+    @Test
     public void testNoOverlap() {
         onView(withId(R.id.hierarchy_parent)).check(noOverlaps());
     }
@@ -84,30 +74,30 @@ public class HierarchyActivityTests extends ActivityInstrumentationTestCase2<Hie
     /**
      * Test selecting a parent from two similar views.
      */
-    @SmallTest
+    @Test
     public void testWithParent() {
-        String contentDescription = getInstrumentation().getTargetContext().getResources().getString(R.string.hierarchy_text);
+        String contentDescription = activityRule.getActivity().getString(R.string.hierarchy_text);
         onView(allOf(withContentDescription(contentDescription), withParent(allOf(withId(R.id.hierarchy_parent_two))))).check(matches(isDisplayed()));
     }
 
     /**
      * Test selecting a parent with child views that match
      */
-    @SmallTest
+    @Test
     public void testWithChild() {
         onView(allOf(withId(R.id.hierarchy_parent_two), withChild(withId(R.id.hierarchy_text_three)))).check(matches(isDisplayed()));
     }
     /**
      * Test selecting a parent with a descendant that matches
      */
-    @SmallTest
+    @Test
     public void testHasDescendant() {
         onView(allOf(withId(R.id.hierarchy_parent_two), hasDescendant(withId(R.id.hierarchy_text_three)))).check(matches(isDisplayed()));
     }
     /**
      * Test selecting a view that is the descendant of another view.
      */
-    @SmallTest
+    @Test
     public void testIsDescendantOfA() {
         onView(allOf(withId(R.id.hierarchy_text_three), isDescendantOfA(withId(R.id.hierarchy_parent_two)))).check(matches(isDisplayed()));
     }
@@ -115,16 +105,16 @@ public class HierarchyActivityTests extends ActivityInstrumentationTestCase2<Hie
     /**
      * Test selecting a view with a matching sibling.
      */
-    @SmallTest
+    @Test
     public void testHasSibling() {
         onView(allOf(withId(R.id.hierarchy_text_three), hasSibling(withId(R.id.hierarchy_text_four)))).check(matches(isDisplayed()));
     }
 
     // https://code.google.com/p/android-test-kit/source/browse/espresso/libtests/src/main/java/com/google/android/apps/common/testing/ui/espresso/assertion/ViewAssertionsTest.java?r=9f9565f2c40130574b80bc67845120a72a66a517
     public View createATestView() {
-        ViewGroup parent = new RelativeLayout(getInstrumentation().getTargetContext());
-        TextView tv = new TextView(getInstrumentation().getTargetContext());
-        tv.setText(getInstrumentation().getTargetContext().getResources().getString(R.string.hierarchy_text));
+        ViewGroup parent = new RelativeLayout(activityRule.getActivity());
+        TextView tv = new TextView(activityRule.getActivity());
+        tv.setText(activityRule.getActivity().getString(R.string.hierarchy_text));
         parent.addView(tv);
         return parent;
     }
