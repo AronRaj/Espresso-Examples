@@ -1,7 +1,11 @@
 package test.nice.testproject;
 
-import android.test.ActivityInstrumentationTestCase2;
-import android.test.suitebuilder.annotation.SmallTest;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import test.nice.testproject.activities.SwitchActivity;
 
@@ -13,24 +17,18 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
 
-public class SwitchActivityTests extends ActivityInstrumentationTestCase2<SwitchActivity> {
-    private static String TAG = SwitchActivityTests.class.getSimpleName();
+@RunWith (AndroidJUnit4.class)
+public class SwitchActivityTests {
 
-    public SwitchActivityTests() {
-        super(SwitchActivity.class);
-    }
-
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
-        getActivity();
-    }
+	/** Launches {@link SwitchActivity} for every test */
+	@Rule
+	public ActivityTestRule<SwitchActivity> activityRule = new ActivityTestRule<>(SwitchActivity.class);
 
     /**
      * Click a switch using its ID.
      * Espresso onView, withId, check, matches, isChecked, perform
      */
-    @SmallTest
+    @Test
     public void testSwitchWithId() {
         onView(withId(R.id.exampleSwitch)).check(matches(not(isChecked())));
         onView(withId(R.id.exampleSwitch)).perform(click());
@@ -42,7 +40,7 @@ public class SwitchActivityTests extends ActivityInstrumentationTestCase2<Switch
      * Click a switch using its label value.
      * Espresso onView, withText, check, matches, isChecked, perform, not
      */
-    @SmallTest
+    @Test
     public void testSwitchWithText() {
         onView(withText(R.string.example_switch_label)).check(matches(not(isChecked())));
         onView(withText(R.string.example_switch_label)).perform(click());
@@ -54,7 +52,7 @@ public class SwitchActivityTests extends ActivityInstrumentationTestCase2<Switch
      * A three line test can now be written in a single line.
      * Espresso onView, withText, check, matches, not, isChecked, perform, click
      */
-    @SmallTest
+    @Test
     public void testSwitchWithChainingExample() {
         // Start with a ViewInteraction
         onView(withText(R.string.example_switch_label))

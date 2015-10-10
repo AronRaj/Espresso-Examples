@@ -1,7 +1,11 @@
 package test.nice.testproject;
 
-import android.test.ActivityInstrumentationTestCase2;
-import android.test.suitebuilder.annotation.SmallTest;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import test.nice.testproject.activities.PositionActivity;
 
@@ -17,31 +21,17 @@ import static android.support.test.espresso.assertion.PositionAssertions.isTopAl
 import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
-public class PositionActivityTests extends ActivityInstrumentationTestCase2<PositionActivity> {
-    private static String TAG = PositionActivityTests.class.getSimpleName();
+@RunWith (AndroidJUnit4.class)
+public class PositionActivityTests {
 
-    private PositionActivity mActivity;
-
-    public PositionActivityTests() {
-        super(PositionActivity.class);
-    }
-
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
-        mActivity = getActivity();
-    }
-
-    @Override
-    public void tearDown() throws Exception {
-        super.tearDown();
-
-    }
+	/** Launches {@link PositionActivity} for every test */
+	@Rule
+	public ActivityTestRule<PositionActivity> activityRule = new ActivityTestRule<>(PositionActivity.class);
 
     /**
      * Is this to the left of another view.
      */
-    @SmallTest
+    @Test
     public void testRightOf() {
         onView(withId(R.id.right_text)).check(isRightOf(withId(R.id.left_text)));
     }
@@ -49,7 +39,7 @@ public class PositionActivityTests extends ActivityInstrumentationTestCase2<Posi
     /**
      * Is this to the left of another view.
      */
-    @SmallTest
+    @Test
     public void testLeftOf() {
         onView(withId(R.id.left_text)).check(isLeftOf(withId(R.id.right_text)));
     }
@@ -57,7 +47,7 @@ public class PositionActivityTests extends ActivityInstrumentationTestCase2<Posi
     /**
      * Is to the below another view.
      */
-    @SmallTest
+    @Test
     public void testBelow() {
         onView(withId(R.id.bottom_text)).check(isBelow(withId(R.id.right_text)));
     }
@@ -65,7 +55,7 @@ public class PositionActivityTests extends ActivityInstrumentationTestCase2<Posi
     /**
      * Is to the above another view.
      */
-    @SmallTest
+    @Test
     public void testAbove() {
         onView(withId(R.id.top_text)).check(isAbove(withId(R.id.right_text)));
     }
@@ -73,7 +63,7 @@ public class PositionActivityTests extends ActivityInstrumentationTestCase2<Posi
     /**
      * Is this to the top inside another view.
      */
-    @SmallTest
+    @Test
     public void testAlignedTopOfView() {
         onView(withId(R.id.top_text)).check(isTopAlignedWith(withId(R.id.parent_container)));
     }
@@ -82,7 +72,7 @@ public class PositionActivityTests extends ActivityInstrumentationTestCase2<Posi
      * Is this to the left inside another view.
      * This test will fail if the view being matches against has a passing or a margin.
      */
-    @SmallTest
+    @Test
     public void testAlignedLeftOfView() {
         onView(withId(R.id.top_text)).check(isLeftAlignedWith(withId(R.id.parent_container)));
     }
@@ -91,7 +81,7 @@ public class PositionActivityTests extends ActivityInstrumentationTestCase2<Posi
      * Is this to the right inside another view.
      * This test will fail if the view being matches against has a passing or a margin.
      */
-    @SmallTest
+    @Test
     public void testAlignedRightOfView() {
         onView(withId(R.id.bottom_text)).check(isRightAlignedWith(withId(R.id.parent_container)));
     }
@@ -100,7 +90,7 @@ public class PositionActivityTests extends ActivityInstrumentationTestCase2<Posi
     /**
      * Is this to the bottom inside another view.
      */
-    @SmallTest
+    @Test
     public void testAlignedBottomOfView() {
         onView(withId(R.id.bottom_text)).check(isBottomAlignedWith(withId(R.id.parent_container)));
     }

@@ -1,7 +1,11 @@
 package test.nice.testproject;
 
-import android.test.ActivityInstrumentationTestCase2;
-import android.test.suitebuilder.annotation.SmallTest;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import test.nice.testproject.activities.MainActivity;
 
@@ -27,46 +31,31 @@ import static android.support.test.espresso.matcher.ViewMatchers.withContentDesc
 import static android.support.test.espresso.matcher.ViewMatchers.withHint;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.endsWith;
 import static org.hamcrest.Matchers.not;
-import static org.hamcrest.text.StringStartsWith.startsWith;
 
-public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActivity> {
-    private static String TAG = MainActivityTests.class.getSimpleName();
+@RunWith(AndroidJUnit4.class)
+public class MainActivityTests  {
 
-    private MainActivity mActivity;
-
-    public MainActivityTests() {
-        super(MainActivity.class);
-    }
-
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
-        mActivity = getActivity();
-    }
-
-    @Override
-    public void tearDown() throws Exception {
-        super.tearDown();
-
-    }
+	/** Launches {@link MainActivity} for every test */
+	@Rule
+	public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
 
     /**
      * Click a button and change the text of a TextView.
      */
-    @SmallTest
+    @Test
     public void testSwapText() {
         onView(withId(R.id.exampleButton)).perform(click());
         onView(allOf(withId(R.id.exampleText), withText(R.string.example_text_after))).check(matches(isDisplayed()));
     }
 
-
     /**
      * Test a button is enabled.
      */
-    @SmallTest
+    @Test
     public void testIsEnabled() {
         onView(withId(R.id.exampleButton)).check(matches(isEnabled()));
     }
@@ -74,7 +63,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     /**
      * Test checking a checkbox
      */
-    @SmallTest
+    @Test
     public void testCheckingACheckBox() {
         onView(withId(R.id.enabled_checkbox)).check(matches(isNotChecked())).perform(click()).check(matches(isChecked()));
     }
@@ -83,7 +72,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
      * Test checking a checkbox
      * Test if you can press go, or next within an EditText
      */
-    @SmallTest
+    @Test
     public void testHasIME() {
         //hasImeAction(R.id.contentDescriptionText);
     }
@@ -91,7 +80,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     /**
      * Test checking a checkbox
      */
-    @SmallTest
+    @Test
     public void testADisabledCheckbox() {
         onView(withId(R.id.disabled_checkbox)).check(matches(not(isEnabled())));
     }
@@ -99,7 +88,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     /**
      * Test a button is clickable.
      */
-    @SmallTest
+    @Test
     public void testIsClickable() {
         onView(withId(R.id.exampleButton)).check(matches(isClickable()));
     }
@@ -107,7 +96,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     /**
      * Click on a contextual menu item from the Overflow menu.
      */
-    @SmallTest
+    @Test
     public void testActionMenuItemClick() {
         openContextualActionModeOverflowMenu();
         onView(withText(R.string.action_settings)).perform(click());
@@ -116,7 +105,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     /**
      * Test if an EditText is focusable.
      */
-    @SmallTest
+    @Test
     public void testEditTextIsFocusable() {
         onView(withId(R.id.exampleEditText)).check(matches(isFocusable()));
     }
@@ -125,7 +114,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     /**
      * Type text and confirm that text has been typed by searching for the text
      */
-    @SmallTest
+    @Test
     public void testTypeText() {
         String exampleText = "Here is a long piece of text to type out.";
         onView(withId(R.id.exampleEditText)).perform(typeText(exampleText));
@@ -136,7 +125,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     /**
      * Type text and confirm that text has been typed by searching for the text
      */
-    @SmallTest
+    @Test
     public void testTypeTextThenClear() {
         String exampleText = "Here is a long piece of text to type out.";
         onView(withId(R.id.exampleEditText)).perform(typeText(exampleText));
@@ -149,7 +138,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     /**
      * Type text and confirm that text has been typed by searching for the text
      */
-    @SmallTest
+    @Test
     public void testTypeTextThenReplace() {
         String exampleText = "Here is a long piece of text to type out.";
         String exampleReplaceText = "Here is a long piece of text to replace.";
@@ -163,7 +152,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     /**
      * Type text and confirm that text has been typed by searching for the text and the ID of the textbox.
      */
-    @SmallTest
+    @Test
     public void testTypeTextWithTextAndId() {
         String exampleText = "Here is a long piece of text to type out.";
         onView(withId(R.id.exampleEditText)).perform(typeText(exampleText));
@@ -174,7 +163,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     /**
      * Focus on an EditText and then close the Soft Keyboard that is displayed.
      */
-    @SmallTest
+    @Test
     public void testTypeTextCloseSoftKeyboard() {
         onView(withId(R.id.exampleEditText)).perform(click());
         closeSoftKeyboard();
@@ -184,9 +173,9 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     /**
      * Test the Content Description of a TextView
      */
-    @SmallTest
+    @Test
     public void testContentDescription() {
-        String exampleContentDescription = mActivity.getResources().getString(R.string.example_content_description);
+        String exampleContentDescription = activityRule.getActivity().getString(R.string.example_content_description);
         onView(withId(R.id.contentDescriptionText)).check(matches(hasContentDescription()));
         onView(allOf(withId(R.id.contentDescriptionText), withContentDescription(exampleContentDescription))).check(matches(isDisplayed()));
     }
@@ -194,18 +183,19 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     /**
      * Test textView startsWith
      */
-    @SmallTest
+    @Test
     public void testStartsWith() {
-        String textStartsWith = mActivity.getResources().getString(R.string.example_content_description).substring(0, 5);
-        onView(allOf(withId(R.id.contentDescriptionText), withText(startsWith(textStartsWith)))).check(matches(isDisplayed()));
+        String textStartsWith = activityRule.getActivity().getString(R.string.example_content_description).substring(0, 5);
+        onView(allOf(withId(R.id.contentDescriptionText), withText(startsWith(textStartsWith)))).check(matches(isDisplayed
+				()));
     }
 
     /**
      * Test textView endsWith
      */
-    @SmallTest
+    @Test
     public void testEndsWith() {
-        String textEndsWith = mActivity.getResources().getString(R.string.example_content_description);
+        String textEndsWith =  activityRule.getActivity().getString(R.string.example_content_description);
         textEndsWith = textEndsWith.substring(textEndsWith.length() - 4);
         onView(allOf(withId(R.id.contentDescriptionText), withText(endsWith(textEndsWith)))).check(matches(isDisplayed()));
     }
@@ -214,7 +204,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     /**
      * Test textView endsWith
      */
-    @SmallTest
+    @Test
     public void testScrollToButton() {
         onView(withId(R.id.offscreen_button)).check(matches(not(isDisplayed()))).perform(scrollTo()).check(matches(isDisplayed()));
     }
@@ -222,7 +212,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     /**
      * Test swipe down.
      */
-    @SmallTest
+    @Test
     public void testScrollDown() {
         onView(withId(R.id.scroll_view)).perform(swipeUp()/* Got to swipe up to scroll down. */);
     }
@@ -230,7 +220,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     /**
      * Test swipe down.
      */
-    @SmallTest
+    @Test
     public void testScrollUp() {
         onView(withId(R.id.scroll_view)).perform(swipeDown()/* Got to swipe down to scroll up. */);
     }
@@ -238,7 +228,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
     /**
      * Test swipe down.
      */
-    @SmallTest
+    @Test
     public void testSelectWithHint() {
         onView(withHint(R.string.example_text_hint)).check(matches(isDisplayed()));
     }
