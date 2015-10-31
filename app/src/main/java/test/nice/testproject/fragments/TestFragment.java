@@ -30,10 +30,10 @@ public class TestFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_test, container, false);
         mTextSwapper = new TextSwapper(getResources().getString(R.string.example_text_before), getResources().getString(R.string.example_text_after));
-        mExampleText = (TextView) rootView.findViewById(R.id.exampleText);
-        mExampleButton = (Button) rootView.findViewById(R.id.exampleButton);
+        mExampleText = (TextView) rootView.findViewById(R.id.test_fragment_example_text);
+        mExampleButton = (Button) rootView.findViewById(R.id.change_text_button);
 
         mExampleButton.setOnClickListener(new View.OnClickListener() {
             @Override

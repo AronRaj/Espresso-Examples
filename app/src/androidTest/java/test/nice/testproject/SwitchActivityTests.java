@@ -32,9 +32,9 @@ public class SwitchActivityTests {
      */
     @Test
     public void testSwitchWithId() {
-        onView(withId(R.id.exampleSwitch)).check(matches(not(isChecked())));
-        onView(withId(R.id.exampleSwitch)).perform(click());
-        onView(withId(R.id.exampleSwitch)).check(matches(isChecked()));
+        onView(withId(R.id.example_switch)).check(matches(not(isChecked())));
+        onView(withId(R.id.example_switch)).perform(click());
+        onView(withId(R.id.example_switch)).check(matches(isChecked()));
 
     }
 

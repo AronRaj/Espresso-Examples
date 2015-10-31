@@ -36,7 +36,7 @@ public class NavigationDrawerActivityTests  {
     public void testNavigationDrawerItemClick() {
         openDrawer(R.id.my_drawer_layout);
         onView(withText("Menu One")).perform(click());
-        onView(allOf(withId(R.id.exampleFragmentText), withText("Menu One"))).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.navigation_fragment_text), withText("Menu One"))).check(matches(isDisplayed()));
     }
 
     /**

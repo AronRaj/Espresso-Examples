@@ -100,7 +100,7 @@ public class PositionActivityTests {
      * check if an element was not found in view hierarchy
      */
     public void testElementDoesNotExists() {
-        onView(withId(R.id.exampleFragmentText)).check(doesNotExist());
+        onView(withId(R.id.navigation_fragment_text)).check(doesNotExist());
     }
 
 }

@@ -11,7 +11,7 @@
     tools:context=".MainActivity$NavigationFragment">
 
     <TextView
-        android:id="@+id/exampleFragmentText"
+        android:id="@+id/navigation_fragment_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
