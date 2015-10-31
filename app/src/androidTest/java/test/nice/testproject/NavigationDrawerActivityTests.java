@@ -2,6 +2,7 @@ package test.nice.testproject;
 
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.v4.widget.DrawerLayout;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,12 +20,14 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
+/** Tests related to interacting with {@link DrawerLayout}  */
 @RunWith (AndroidJUnit4.class)
 public class NavigationDrawerActivityTests  {
 
 	/** Launches {@link NavigationDrawerActivity} for every test */
 	@Rule
 	public ActivityTestRule<NavigationDrawerActivity> activityRule = new ActivityTestRule<>(NavigationDrawerActivity.class);
+
     /**
      * Test that clicking on a Navigation Drawer Item will open the correct fragment.
      * Espresso: openDrawer, onView, withText, perform, click, matches, check, isDisplayed
