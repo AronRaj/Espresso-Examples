@@ -1,13 +1,13 @@
 package test.nice.testproject.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import test.nice.testproject.R;
 import test.nice.testproject.fragments.ViewPagerFragment;
 
-public class ViewPagerActivity extends ActionBarActivity {
+public class ViewPagerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
