@@ -10,6 +10,7 @@ import test.nice.testproject.fragments.TestFragment;
 
 
 public class MainActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

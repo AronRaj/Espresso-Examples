@@ -44,7 +44,7 @@ public class MainActivityTests  {
 	public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
 
     /**
-     * Click a button and change the text of a TextView.
+     * Checks whether text on TextView gets changed after a button click
      */
     @Test
     public void testSwapText() {
@@ -53,7 +53,7 @@ public class MainActivityTests  {
     }
 
     /**
-     * Test a button is enabled.
+     * Checks whether a button is enabled.
      */
     @Test
     public void testIsEnabled() {
@@ -61,7 +61,7 @@ public class MainActivityTests  {
     }
 
     /**
-     * Test checking a checkbox
+     * Whether clicking on a CheckBox gets it checked
      */
     @Test
     public void testCheckingACheckBox() {
@@ -78,15 +78,15 @@ public class MainActivityTests  {
     }
 
     /**
-     * Test checking a checkbox
+     * Tests whether a CheckBox is disabled
      */
     @Test
-    public void testADisabledCheckbox() {
+    public void testIsCheckboxDisabled() {
         onView(withId(R.id.disabled_checkbox)).check(matches(not(isEnabled())));
     }
 
     /**
-     * Test a button is clickable.
+     * Test a Button is clickable.
      */
     @Test
     public void testIsClickable() {
@@ -103,13 +103,12 @@ public class MainActivityTests  {
     }
 
     /**
-     * Test if an EditText is focusable.
+     * Whether EditText is focusable.
      */
     @Test
     public void testEditTextIsFocusable() {
         onView(withId(R.id.exampleEditText)).check(matches(isFocusable()));
     }
-
 
     /**
      * Type text and confirm that text has been typed by searching for the text
@@ -118,7 +117,7 @@ public class MainActivityTests  {
     public void testTypeText() {
         String exampleText = "Here is a long piece of text to type out.";
         onView(withId(R.id.exampleEditText)).perform(typeText(exampleText));
-        // Example confirming this text has been succesfully typed with just the text.
+        // Example confirming this text has been successfully typed with just the text.
         onView(withText(exampleText)).check(matches(isDisplayed()));
     }
 
@@ -129,12 +128,13 @@ public class MainActivityTests  {
     public void testTypeTextThenClear() {
         String exampleText = "Here is a long piece of text to type out.";
         onView(withId(R.id.exampleEditText)).perform(typeText(exampleText));
-        // Example confirming this text has been succesfully typed with just the text.
+        // Example confirming this text has been successfully typed with just the text.
         onView(withText(exampleText)).check(matches(isDisplayed()));
         onView(withId(R.id.exampleEditText)).perform(clearText());
         // Check it is empty
         onView(withId(R.id.exampleEditText)).check(matches(withText("")));
     }
+
     /**
      * Type text and confirm that text has been typed by searching for the text
      */
@@ -149,6 +149,7 @@ public class MainActivityTests  {
         // Check it is empty
         onView(allOf(withId(R.id.exampleEditText), withText(exampleReplaceText))).check(matches(isDisplayed()));
     }
+
     /**
      * Type text and confirm that text has been typed by searching for the text and the ID of the textbox.
      */
@@ -169,7 +170,6 @@ public class MainActivityTests  {
         closeSoftKeyboard();
     }
 
-
     /**
      * Test the Content Description of a TextView
      */
@@ -181,7 +181,7 @@ public class MainActivityTests  {
     }
 
     /**
-     * Test textView startsWith
+     * Usage example of startsWith()
      */
     @Test
     public void testStartsWith() {
@@ -191,7 +191,7 @@ public class MainActivityTests  {
     }
 
     /**
-     * Test textView endsWith
+	 * Usage example of endsWith()
      */
     @Test
     public void testEndsWith() {
@@ -200,9 +200,8 @@ public class MainActivityTests  {
         onView(allOf(withId(R.id.contentDescriptionText), withText(endsWith(textEndsWith)))).check(matches(isDisplayed()));
     }
 
-
     /**
-     * Test textView endsWith
+     * Checks a View visible after scrolling to it using scrollTo()
      */
     @Test
     public void testScrollToButton() {
@@ -210,7 +209,7 @@ public class MainActivityTests  {
     }
 
     /**
-     * Test swipe down.
+     * Example fo swipeUp()
      */
     @Test
     public void testScrollDown() {
@@ -218,7 +217,7 @@ public class MainActivityTests  {
     }
 
     /**
-     * Test swipe down.
+     * Example of swipeDown()
      */
     @Test
     public void testScrollUp() {
@@ -226,7 +225,7 @@ public class MainActivityTests  {
     }
 
     /**
-     * Test swipe down.
+     * Example of withHint()
      */
     @Test
     public void testSelectWithHint() {
