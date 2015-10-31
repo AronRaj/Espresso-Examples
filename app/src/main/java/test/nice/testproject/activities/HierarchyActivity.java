@@ -10,17 +10,17 @@ import test.nice.testproject.fragments.HierarchyFragment;
 
 public class HierarchyActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
 
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction().add(R.id.container, HierarchyFragment.newInstance()).commit();
-        }
-    }
+		if (savedInstanceState == null) {
+			getFragmentManager().beginTransaction().add(R.id.container, HierarchyFragment.newInstance()).commit();
+		}
+	}
 
 }
