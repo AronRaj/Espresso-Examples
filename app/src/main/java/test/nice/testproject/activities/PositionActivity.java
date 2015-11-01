@@ -1,14 +1,14 @@
 package test.nice.testproject.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import test.nice.testproject.R;
 import test.nice.testproject.fragments.PositionFragment;
 
 
-public class PositionActivity extends ActionBarActivity {
+public class PositionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

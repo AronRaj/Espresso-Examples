@@ -21,6 +21,8 @@ import static android.support.test.espresso.assertion.PositionAssertions.isTopAl
 import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
+/** Tests related to positioning of views such as isRightOf(), isBelow(), isTopAlignedWith().
+ * */
 @RunWith (AndroidJUnit4.class)
 public class PositionActivityTests {
 
@@ -86,7 +88,6 @@ public class PositionActivityTests {
         onView(withId(R.id.bottom_text)).check(isRightAlignedWith(withId(R.id.parent_container)));
     }
 
-
     /**
      * Is this to the bottom inside another view.
      */
@@ -96,11 +97,10 @@ public class PositionActivityTests {
     }
 
     /**
-     * check if an element does exist
+     * check if an element was not found in view hierarchy
      */
     public void testElementDoesNotExists() {
-        onView(withId(R.id.exampleFragmentText)).check(doesNotExist());
+        onView(withId(R.id.navigation_fragment_text)).check(doesNotExist());
     }
-
 
 }

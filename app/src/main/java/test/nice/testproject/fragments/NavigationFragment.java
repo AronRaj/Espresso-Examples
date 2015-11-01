@@ -49,7 +49,7 @@ public class NavigationFragment extends Fragment {
     }
 
     public void setUpFragment() {
-        TextView exampleTextView = (TextView) mRootView.findViewById(R.id.exampleFragmentText);
+        TextView exampleTextView = (TextView) mRootView.findViewById(R.id.navigation_fragment_text);
         exampleTextView.setText(mItemText);
     }
 }

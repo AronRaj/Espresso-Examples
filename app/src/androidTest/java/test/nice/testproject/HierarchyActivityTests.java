@@ -1,5 +1,6 @@
 package test.nice.testproject;
 
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
@@ -31,7 +32,10 @@ import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
-
+/**
+ * Demonstrates usage of hierarchy-related tests, such as:
+ * {@link ViewMatchers#withParent}, {@link ViewMatchers#withParent}, {@link ViewMatchers#hasDescendant}
+ */
 @RunWith (AndroidJUnit4.class)
 public class HierarchyActivityTests {
 
@@ -48,7 +52,7 @@ public class HierarchyActivityTests {
     }
 
     /**
-     * Test that there are no ellipsized texts.
+     * Test that there are no ellipsized texts in entire view hierarchy.
      */
     @Test
     public void testNoEllipsizedText() {
@@ -56,7 +60,7 @@ public class HierarchyActivityTests {
     }
 
     /**
-     * Test that there are no multiline buttons.
+     * Test that there are no multiline buttons in entire view hierarchy.
      */
     @Test
     public void testNoMultilineButtons() {
@@ -64,7 +68,7 @@ public class HierarchyActivityTests {
     }
 
     /**
-     * Test the descendants of a selected view.
+     * Test the descendants of a selected view in entire view hierarchy.
      */
     @Test
     public void testNoOverlap() {
@@ -77,7 +81,7 @@ public class HierarchyActivityTests {
     @Test
     public void testWithParent() {
         String contentDescription = activityRule.getActivity().getString(R.string.hierarchy_text);
-        onView(allOf(withContentDescription(contentDescription), withParent(allOf(withId(R.id.hierarchy_parent_two))))).check(matches(isDisplayed()));
+        onView(allOf(withContentDescription(contentDescription), withParent(withId(R.id.hierarchy_parent_two)))).check(matches(isDisplayed()));
     }
 
     /**
@@ -87,6 +91,7 @@ public class HierarchyActivityTests {
     public void testWithChild() {
         onView(allOf(withId(R.id.hierarchy_parent_two), withChild(withId(R.id.hierarchy_text_three)))).check(matches(isDisplayed()));
     }
+
     /**
      * Test selecting a parent with a descendant that matches
      */
@@ -94,6 +99,7 @@ public class HierarchyActivityTests {
     public void testHasDescendant() {
         onView(allOf(withId(R.id.hierarchy_parent_two), hasDescendant(withId(R.id.hierarchy_text_three)))).check(matches(isDisplayed()));
     }
+
     /**
      * Test selecting a view that is the descendant of another view.
      */

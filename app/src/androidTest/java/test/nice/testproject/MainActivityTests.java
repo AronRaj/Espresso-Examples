@@ -44,24 +44,24 @@ public class MainActivityTests  {
 	public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
 
     /**
-     * Click a button and change the text of a TextView.
+     * Checks whether text on TextView gets changed after a button click
      */
     @Test
     public void testSwapText() {
-        onView(withId(R.id.exampleButton)).perform(click());
-        onView(allOf(withId(R.id.exampleText), withText(R.string.example_text_after))).check(matches(isDisplayed()));
+        onView(withId(R.id.change_text_button)).perform(click());
+        onView(allOf(withId(R.id.test_fragment_example_text), withText(R.string.example_text_after))).check(matches(isDisplayed()));
     }
 
     /**
-     * Test a button is enabled.
+     * Checks whether a button is enabled.
      */
     @Test
     public void testIsEnabled() {
-        onView(withId(R.id.exampleButton)).check(matches(isEnabled()));
+        onView(withId(R.id.change_text_button)).check(matches(isEnabled()));
     }
 
     /**
-     * Test checking a checkbox
+     * Whether clicking on a CheckBox gets it checked
      */
     @Test
     public void testCheckingACheckBox() {
@@ -78,19 +78,19 @@ public class MainActivityTests  {
     }
 
     /**
-     * Test checking a checkbox
+     * Tests whether a CheckBox is disabled
      */
     @Test
-    public void testADisabledCheckbox() {
+    public void testIsCheckboxDisabled() {
         onView(withId(R.id.disabled_checkbox)).check(matches(not(isEnabled())));
     }
 
     /**
-     * Test a button is clickable.
+     * Test a Button is clickable.
      */
     @Test
     public void testIsClickable() {
-        onView(withId(R.id.exampleButton)).check(matches(isClickable()));
+        onView(withId(R.id.change_text_button)).check(matches(isClickable()));
     }
 
     /**
@@ -103,13 +103,12 @@ public class MainActivityTests  {
     }
 
     /**
-     * Test if an EditText is focusable.
+     * Whether EditText is focusable.
      */
     @Test
     public void testEditTextIsFocusable() {
-        onView(withId(R.id.exampleEditText)).check(matches(isFocusable()));
+        onView(withId(R.id.test_fragment_edittext)).check(matches(isFocusable()));
     }
-
 
     /**
      * Type text and confirm that text has been typed by searching for the text
@@ -117,8 +116,8 @@ public class MainActivityTests  {
     @Test
     public void testTypeText() {
         String exampleText = "Here is a long piece of text to type out.";
-        onView(withId(R.id.exampleEditText)).perform(typeText(exampleText));
-        // Example confirming this text has been succesfully typed with just the text.
+        onView(withId(R.id.test_fragment_edittext)).perform(typeText(exampleText));
+        // Example confirming this text has been successfully typed with just the text.
         onView(withText(exampleText)).check(matches(isDisplayed()));
     }
 
@@ -128,13 +127,14 @@ public class MainActivityTests  {
     @Test
     public void testTypeTextThenClear() {
         String exampleText = "Here is a long piece of text to type out.";
-        onView(withId(R.id.exampleEditText)).perform(typeText(exampleText));
-        // Example confirming this text has been succesfully typed with just the text.
+        onView(withId(R.id.test_fragment_edittext)).perform(typeText(exampleText));
+        // Example confirming this text has been successfully typed with just the text.
         onView(withText(exampleText)).check(matches(isDisplayed()));
-        onView(withId(R.id.exampleEditText)).perform(clearText());
+        onView(withId(R.id.test_fragment_edittext)).perform(clearText());
         // Check it is empty
-        onView(withId(R.id.exampleEditText)).check(matches(withText("")));
+        onView(withId(R.id.test_fragment_edittext)).check(matches(withText("")));
     }
+
     /**
      * Type text and confirm that text has been typed by searching for the text
      */
@@ -142,22 +142,23 @@ public class MainActivityTests  {
     public void testTypeTextThenReplace() {
         String exampleText = "Here is a long piece of text to type out.";
         String exampleReplaceText = "Here is a long piece of text to replace.";
-        onView(withId(R.id.exampleEditText)).perform(typeText(exampleText));
+        onView(withId(R.id.test_fragment_edittext)).perform(typeText(exampleText));
         // Example confirming this text has been succesfully typed with just the text.
         onView(withText(exampleText)).check(matches(isDisplayed()));
-        onView(withId(R.id.exampleEditText)).perform(replaceText(exampleReplaceText));
+        onView(withId(R.id.test_fragment_edittext)).perform(replaceText(exampleReplaceText));
         // Check it is empty
-        onView(allOf(withId(R.id.exampleEditText), withText(exampleReplaceText))).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.test_fragment_edittext), withText(exampleReplaceText))).check(matches(isDisplayed()));
     }
+
     /**
      * Type text and confirm that text has been typed by searching for the text and the ID of the textbox.
      */
     @Test
     public void testTypeTextWithTextAndId() {
         String exampleText = "Here is a long piece of text to type out.";
-        onView(withId(R.id.exampleEditText)).perform(typeText(exampleText));
+        onView(withId(R.id.test_fragment_edittext)).perform(typeText(exampleText));
         // Example confirming this text has been succesfully typed with just the text.
-        onView(allOf(withText(exampleText), withId(R.id.exampleEditText))).check(matches(isDisplayed()));
+        onView(allOf(withText(exampleText), withId(R.id.test_fragment_edittext))).check(matches(isDisplayed()));
     }
 
     /**
@@ -165,10 +166,9 @@ public class MainActivityTests  {
      */
     @Test
     public void testTypeTextCloseSoftKeyboard() {
-        onView(withId(R.id.exampleEditText)).perform(click());
+        onView(withId(R.id.test_fragment_edittext)).perform(click());
         closeSoftKeyboard();
     }
-
 
     /**
      * Test the Content Description of a TextView
@@ -176,33 +176,32 @@ public class MainActivityTests  {
     @Test
     public void testContentDescription() {
         String exampleContentDescription = activityRule.getActivity().getString(R.string.example_content_description);
-        onView(withId(R.id.contentDescriptionText)).check(matches(hasContentDescription()));
-        onView(allOf(withId(R.id.contentDescriptionText), withContentDescription(exampleContentDescription))).check(matches(isDisplayed()));
+        onView(withId(R.id.test_fragment_content_description_text)).check(matches(hasContentDescription()));
+        onView(allOf(withId(R.id.test_fragment_content_description_text), withContentDescription(exampleContentDescription))).check(matches(isDisplayed()));
     }
 
     /**
-     * Test textView startsWith
+     * Usage example of startsWith()
      */
     @Test
     public void testStartsWith() {
         String textStartsWith = activityRule.getActivity().getString(R.string.example_content_description).substring(0, 5);
-        onView(allOf(withId(R.id.contentDescriptionText), withText(startsWith(textStartsWith)))).check(matches(isDisplayed
+        onView(allOf(withId(R.id.test_fragment_content_description_text), withText(startsWith(textStartsWith)))).check(matches(isDisplayed
 				()));
     }
 
     /**
-     * Test textView endsWith
+	 * Usage example of endsWith()
      */
     @Test
     public void testEndsWith() {
         String textEndsWith =  activityRule.getActivity().getString(R.string.example_content_description);
         textEndsWith = textEndsWith.substring(textEndsWith.length() - 4);
-        onView(allOf(withId(R.id.contentDescriptionText), withText(endsWith(textEndsWith)))).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.test_fragment_content_description_text), withText(endsWith(textEndsWith)))).check(matches(isDisplayed()));
     }
 
-
     /**
-     * Test textView endsWith
+     * Checks a View visible after scrolling to it using scrollTo()
      */
     @Test
     public void testScrollToButton() {
@@ -210,7 +209,7 @@ public class MainActivityTests  {
     }
 
     /**
-     * Test swipe down.
+     * Example fo swipeUp()
      */
     @Test
     public void testScrollDown() {
@@ -218,7 +217,7 @@ public class MainActivityTests  {
     }
 
     /**
-     * Test swipe down.
+     * Example of swipeDown()
      */
     @Test
     public void testScrollUp() {
@@ -226,7 +225,7 @@ public class MainActivityTests  {
     }
 
     /**
-     * Test swipe down.
+     * Example of withHint()
      */
     @Test
     public void testSelectWithHint() {

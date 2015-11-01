@@ -2,6 +2,7 @@ package test.nice.testproject;
 
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.widget.Switch;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -17,6 +18,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
 
+/** Tests for {@link Switch} widget */
 @RunWith (AndroidJUnit4.class)
 public class SwitchActivityTests {
 
@@ -30,9 +32,9 @@ public class SwitchActivityTests {
      */
     @Test
     public void testSwitchWithId() {
-        onView(withId(R.id.exampleSwitch)).check(matches(not(isChecked())));
-        onView(withId(R.id.exampleSwitch)).perform(click());
-        onView(withId(R.id.exampleSwitch)).check(matches(isChecked()));
+        onView(withId(R.id.example_switch)).check(matches(not(isChecked())));
+        onView(withId(R.id.example_switch)).perform(click());
+        onView(withId(R.id.example_switch)).check(matches(isChecked()));
 
     }
 
@@ -61,6 +63,5 @@ public class SwitchActivityTests {
                 .perform(click())
                 .check(matches(isChecked()));
     }
-
 
 }
