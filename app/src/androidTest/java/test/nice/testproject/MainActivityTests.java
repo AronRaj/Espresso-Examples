@@ -143,7 +143,7 @@ public class MainActivityTests  {
         String exampleText = "Here is a long piece of text to type out.";
         String exampleReplaceText = "Here is a long piece of text to replace.";
         onView(withId(R.id.test_fragment_edittext)).perform(typeText(exampleText));
-        // Example confirming this text has been succesfully typed with just the text.
+        // Example confirming this text has been successfully typed with just the text.
         onView(withText(exampleText)).check(matches(isDisplayed()));
         onView(withId(R.id.test_fragment_edittext)).perform(replaceText(exampleReplaceText));
         // Check it is empty
@@ -157,7 +157,7 @@ public class MainActivityTests  {
     public void testTypeTextWithTextAndId() {
         String exampleText = "Here is a long piece of text to type out.";
         onView(withId(R.id.test_fragment_edittext)).perform(typeText(exampleText));
-        // Example confirming this text has been succesfully typed with just the text.
+        // Example confirming this text has been successfully typed with just the text.
         onView(allOf(withText(exampleText), withId(R.id.test_fragment_edittext))).check(matches(isDisplayed()));
     }
 
