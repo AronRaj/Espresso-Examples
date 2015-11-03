@@ -8,6 +8,7 @@ import org.junit.runners.Suite;
  */
 @RunWith (Suite.class)
 @Suite.SuiteClasses ({
+		CustomIntentTests.class,
 		DeviceRotationTests.class,
 		HierarchyActivityTests.class,
 		MainActivityTests.class,
