@@ -9,40 +9,24 @@ This repository contains an example Android application and a number of helpful 
 To use test execute the tests you will can execute using the gradle command: `./gradlew app:createDebugCoverageReport` or by building the tests with a test configuration in Android Studio.
 
 
-## Libraries used
+## Dependencies
 
 * Android Testing Library
 
     ```gradle
         dependencies {
-            androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
+            //Provides AndroidJUnitRunner
+            androidTestCompile 'com.android.support.test:runner:0.4'
+
+            // Provides JUnit 4 rules
+            androidTestCompile 'com.android.support.test:rules:0.4'
+
+            // Builds and runs Espresso tests
+            androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+
+            androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.1'
         }
     ```
-
-* Espresso 2.0 Core
-
-    ```gradle
-        dependencies {
-            androidTestCompile 'com.android.support.test.espresso:espresso-core:2.0'
-        }
-    ```
-
-* Espresso 2.0 Contrib
-
-    ```gradle
-        dependencies {
-            androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.0'
-        }
-    ```
-
-* Jacocco Code Coverage
-
-    ```gradle
-        debug {
-            testCoverageEnabled true
-        }
-    ```
-
 
 ## Espresso library usage and where to find them
 
@@ -241,6 +225,14 @@ Below is a short list of the Widgets and Views that are tested in this Repositor
 * Idling Resources
 
 ## JaCoCo Coverage
+
+To add code coverage add this to your gradle file.
+
+```gradle
+    debug {
+        testCoverageEnabled true
+    }
+```
 
 The [JaCoCo](http://www.eclemma.org/jacoco/) Coverage plugin has been included to demonstrate coverage reporting. The Code Coverage can be found in the following directory structure within the module you are testing `build/outputs/reports/coverage/debug/index.html`
 
