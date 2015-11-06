@@ -21,208 +21,16 @@ To use test execute the tests you will can execute using the gradle command: `./
             // Provides JUnit 4 rules
             androidTestCompile 'com.android.support.test:rules:0.4'
 
-            // Builds and runs Espresso tests
+            // Espresso Core
             androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
 
+            // Espresso Contrib
             androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.1'
         }
     ```
 
-## Espresso library usage and where to find them
-
-Below is an example of theEspresso methods that have been used so far in the example application.
-
-### Matchers
-
-The `onView(Matcher<View>)` method can accept Matchers to identify a View.
-
-* `withText(String)`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-    * [SwitchActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/SwitchActivityTests.java)
-    * [NavigationDrawerTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/NavigationDrawerTests.java)
-    * [ViewPagerTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/ViewPagerTests.java)
-
-* `withId(int)`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-    * [SwitchActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/SwitchActivityTests.java)
-    * [ViewPagerTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/ViewPagerTests.java)
-
-* `isDisplayed()`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-    * [NavigationDrawerTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/NavigationDrawerTests.java)
-    * [ViewPagerTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/ViewPagerTests.java)
-
-* `isEnabled()`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-
-* `isTouchable()`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-
-* `isChecked()`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-
-* `isNotChecked()`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-
-* `isAssignableFrom(Matcher)`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-
-* `withHint(int|String)`
-    * [PositionActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/PositionActivityTests.java)
-
-* `withParent(Matcher<T>)`
-    * [HierarchyActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/HierarchyActivityTests.java)
-
-* `isDescendentOfA(Matcher<T>)`
-    * [HierarchyActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/HierarchyActivityTests.java)
-
-* `withChild(Matcher<T>)`
-    * [HierarchyActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/HierarchyActivityTests.java)
-
-* `hasSibling(Matcher<T>)`
-    * [HierarchyActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/HierarchyActivityTests.java)
-
-* `hasDescendant(Matcher<T>)`
-    * [HierarchyActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/HierarchyActivityTests.java)
-
-#### Hamcrest Matchers
-
-* `allOf(Matcher<T> ...)`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-    * [NavigationDrawerTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/NavigationDrawerTests.java)
-
-* `not(Object)`
-    * [SwitchActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/SwitchActivityTests.java)
-
-* `endsWith(String)`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-
-* `startsWith(String)`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-
-
-### Actions
-Actions are performed using the `perform(ViewAction)` method.
-
-* `click()`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-    * [NavigationDrawerTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/NavigationDrawerTests.java)
-    * [SwitchActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/SwitchActivityTests.java)
-
-* `pressBack()`
-    * [NavigationDrawerTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/NavigationDrawerTests.java)
-
-* `typeText(String)`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-
-* `clearText()`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-
-* `replaceText(String)`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-
-* `swipeLeft()`
-    * [ViewPagerTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/ViewPagerTests.java)
-
-* `swipeRight()`
-    * [ViewPagerTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/ViewPagerTests.java)
-
-* `swipeUp()`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-
-* `swipeDown()`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-
-* `closeSoftKeyboard()`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-
-* `hasContentDescription()`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-
-* `withContentDescription(String)`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-
-* `scrollTo()`
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-
-### Assertions
-Assertions are performed using the `check(ViewAssertion)` method.
-
-* `matches(Matcher<T>)`
-    * [NavigationDrawerTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/NavigationDrawerTests.java)
-    * [SwitchActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/SwitchActivityTests.java)
-    * [MainActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/MainActivityTests.java)
-
-* `isLeftOf(Matcher)`
-    * [PositionActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/PositionActivityTests.java)
-
-* `isRightOf(Matcher)`
-    * [PositionActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/PositionActivityTests.java)
-
-* `isAbove(Matcher)`
-    * [PositionActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/PositionActivityTests.java)
-
-* `isBelow(Matcher)`
-    * [PositionActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/PositionActivityTests.java)
-
-* `isLeftAlignedWith(Matcher)`
-    * [PositionActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/PositionActivityTests.java)
-
-* `isRightAlignedWith(Matcher)`
-    * [PositionActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/PositionActivityTests.java)
-
-* `isTopAlignedWith(Matcher)`
-    * [PositionActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/PositionActivityTests.java)
-
-* `isRightAlignedWith(Matcher)`
-    * [PositionActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/PositionActivityTests.java)
-
-* `doesNotExist()`
-    * [PositionActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/PositionActivityTests.java)
-
-* `selectedDescendantsMatch(Matcher)`
-    * [HierarchyActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/HierarchyActivityTests.java)
-
-* `noEllipsizedText(Matcher)`
-    * [HierarchyActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/HierarchyActivityTests.java)
-
-* `selectedDescendantsMatch(Matcher)`
-    * [HierarchyActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/HierarchyActivityTests.java)
-
-* `noOverlaps(Matcher)`
-    * [HierarchyActivityTests](https://github.com/jordanterry/Espresso-Examples/blob/master/app/src/androidTest/java/test/nice/testproject/HierarchyActivityTests.java)
-
-
-## Widgets
-
-Below is a short list of the Widgets and Views that are tested in this Repository.
-### Tested
-* TextView
-
-* Button
-
-* EditText
-
-* Overflow Menu
-
-* App Drawer
-
-* ViewPager
-
-### To be tested
-* Spinner
-
-* ProgressBar
-
-* ~~ViewPager~~
-
-* PagerTabStrip
-
-* Date and Time Widgets
-
-### To be demonstrated
-
-* Idling Resources
+## Wiki
+Checkout the project Wiki to see what Espresso methods are tested within the project with an explanation of what they do and where to find them in the official documentation.
 
 ## JaCoCo Coverage
 
@@ -235,7 +43,6 @@ To add code coverage add this to your gradle file.
 ```
 
 The [JaCoCo](http://www.eclemma.org/jacoco/) Coverage plugin has been included to demonstrate coverage reporting. The Code Coverage can be found in the following directory structure within the module you are testing `build/outputs/reports/coverage/debug/index.html`
-
 
 
 ## Contact me
