@@ -8,7 +8,6 @@ This repository contains an example Android application and a number of helpful 
 
 To use test execute the tests you will can execute using the gradle command: `./gradlew app:createDebugCoverageReport` or by building the tests with a test configuration in Android Studio.
 
-
 ## Dependencies
 
 * Android Testing Library
@@ -30,7 +29,12 @@ To use test execute the tests you will can execute using the gradle command: `./
     ```
 
 ## Wiki
-Checkout the project Wiki to see what Espresso methods are tested within the project with an explanation of what they do and where to find them in the official documentation.
+Checkout the project [Wiki](https://github.com/jordanterry/Espresso-Examples/wiki) to see what Espresso methods are tested within the project with an explanation of what they do and where to find them in the official documentation.
+    * [Actions] (https://github.com/jordanterry/Espresso-Examples/wiki/Actions)
+    * [Assertions] (https://github.com/jordanterry/Espresso-Examples/wiki/Assertions)
+    * [Hamcrest Matchers] (https://github.com/jordanterry/Espresso-Examples/wiki/HamcrestMatchers)
+    * [Matchers] (https://github.com/jordanterry/Espresso-Examples/wiki/Matchers)
+    * [Widgets] (https://github.com/jordanterry/Espresso-Examples/wiki/Widgets)
 
 ## JaCoCo Coverage
 
